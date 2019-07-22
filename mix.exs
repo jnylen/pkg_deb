@@ -2,7 +2,7 @@ defmodule PkgDeb.MixProject do
   use Mix.Project
 
   @name :pkg_deb
-  @version File.read!("VERSION") |> String.trim()
+  @version "0.2.0"
   @description """
   Elixir lib for creating Debian packages with Mix Release.
   """
