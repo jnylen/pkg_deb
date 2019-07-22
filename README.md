@@ -22,3 +22,31 @@ end
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/pkg_deb](https://hexdocs.pm/pkg_deb).
+
+## Usage
+
+Inside of your mix.exs file add:
+
+```elixir
+  defp deb_config() do
+    [
+      vendor: "Your Name",
+      maintainers: ["Your Name <your@email.com>"],
+      homepage: "https://yourdomain.com",
+      base_path: "/opt",
+      external_dependencies: [],
+      owner: [user: "youruser", group: "youruser"],
+      description: "yourdescription"
+    ]
+  end
+```
+
+And to the steps inside of `releases` add:
+
+```elixir
+steps: [:assemble, &PkgDeb.create_deb(&1, deb_config())],
+```
+
+## Thanks
+
+Thanks to `distillery_packager` for their package that this is based of.
