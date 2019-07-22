@@ -8,7 +8,8 @@ defmodule PkgDeb.MixProject do
   """
   @deps [
     {:vex, "~> 0.8"},
-    {:timex, "~> 3.6"}
+    {:timex, "~> 3.6"},
+    {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
   ]
 
   @hex_package [
