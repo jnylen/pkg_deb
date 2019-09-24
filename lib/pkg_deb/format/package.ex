@@ -3,16 +3,15 @@ defmodule PkgDeb.Format.Package do
   This module is used to produce the final debian package file, using the "ar"
   compression tool.
   """
-  alias PkgDeb.Utils.Config, as: ConfigUtil
 
   def build({release, dir, config}) do
-    PkgDeb.Utils.Logger.debug("building deb file")
+    PkgCore.Logger.debug("pkg_deb", "building deb file")
 
-    :ok = File.mkdir_p(ConfigUtil.rel_dest_path())
+    :ok = File.mkdir_p(PkgCore.Config.rel_dest_path())
 
     out =
       Path.join([
-        ConfigUtil.rel_dest_path(),
+        PkgCore.Config.rel_dest_path(),
         filename(config)
       ])
 
@@ -28,7 +27,7 @@ defmodule PkgDeb.Format.Package do
 
     {_response, 0} = System.cmd("ar", args)
 
-    PkgDeb.Utils.Logger.debug("successfully built #{out}")
+    PkgCore.Logger.debug("deb", "successfully built #{out}")
 
     {release, dir, config}
   end

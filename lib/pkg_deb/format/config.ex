@@ -22,9 +22,6 @@ defmodule PkgDeb.Format.Config do
 
   use Vex.Struct
 
-  alias PkgDeb.Utils
-  alias Mix.Project
-
   validates(:name, presence: true)
   validates(:version, presence: true)
   validates(:arch, presence: true)
@@ -52,12 +49,12 @@ defmodule PkgDeb.Format.Config do
 
     PkgDeb.Format.Config
     |> struct(base_config)
-    |> PkgDeb.Utils.Config.sanitize_config()
+    |> PkgCore.Config.sanitize_config()
     |> check_valid
   end
 
   defp format_package_arch(%{architecture: arch}), do: arch
-  defp format_package_arch(_), do: Utils.Config.detect_arch()
+  defp format_package_arch(_), do: PkgCore.Config.detect_arch()
 
   defp format_package_version(version, %{distribution: distribution}) do
     "#{version}~#{distribution}"
@@ -145,12 +142,12 @@ defmodule PkgDeb.Format.Config do
     end
   end
 
-  defp print_validation_error({:error, field, _type, msg}) when is_atom(field) do
+  defp print_validation_error({:error, field, _type, _}) when is_atom(field) do
     # error(" - '#{Atom.to_string(field)}' #{msg}")
   end
 
-  defp print_validation_error({:error, field, _type, msg}) when is_list(field) do
-    field = Enum.map_join(field, " -> ", &"'#{&1}'")
+  defp print_validation_error({:error, field, _type, _}) when is_list(field) do
+    # field = Enum.map_join(field, " -> ", &"'#{&1}'")
     # error(" - #{field} #{msg}")
   end
 end

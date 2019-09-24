@@ -11,7 +11,7 @@ defmodule PkgDeb do
   def create_deb(%Mix.Release{} = release, config) when is_list(config) do
     {:ok, package_config} = PkgDeb.Format.Config.build_config(release, config)
 
-    PkgDeb.Utils.Logger.debug("building .deb package..")
+    PkgCore.Logger.debug("pkg_deb", "building .deb package..")
 
     release
     |> init_dir()

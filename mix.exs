@@ -2,11 +2,12 @@ defmodule PkgDeb.MixProject do
   use Mix.Project
 
   @name :pkg_deb
-  @version "0.2.0"
+  @version "0.3.0"
   @description """
   Elixir lib for creating Debian packages with Mix Release.
   """
   @deps [
+    {:pkg_core, "~> 0.1", git: "https://gitlab.com/jnylen/pkg_core.git"},
     {:vex, "~> 0.8"},
     {:timex, "~> 3.6"},
     {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
@@ -15,7 +16,7 @@ defmodule PkgDeb.MixProject do
   @hex_package [
     name: @name,
     files: ["lib", "mix.exs", "README*", "LICENSE*", "templates"],
-    maintainers: ["Joakim Nylen <me@jnylen.nu>"],
+    maintainers: ["Joakim Nylen <hexpm@joakim.nylen.nu>"],
     licenses: ["MIT"],
     links: %{
       "GitLab" => "https://gitlab.com/jnylen/pkg_deb",

@@ -2,14 +2,14 @@ defmodule PkgDeb.Format.Generators.Control do
   @moduledoc """
   This module builds a control file from the config and a template.
   """
-  alias PkgDeb.Format.Generators.TemplateFinder
+  alias PkgCore.TemplateFinder
 
   def build(config, control_dir) do
     # debug("Building Control file")
 
     out =
       ["control.eex"]
-      |> TemplateFinder.retrieve()
+      |> TemplateFinder.retrieve(:pkg_deb)
       |> EEx.eval_file(
         [
           description: config.description,

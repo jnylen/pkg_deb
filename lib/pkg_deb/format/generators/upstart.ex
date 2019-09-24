@@ -2,7 +2,7 @@ defmodule PkgDeb.Format.Generators.Upstart do
   @moduledoc """
   This module produces an Upstart init script from the config and a template.
   """
-  alias PkgDeb.Format.Generators.TemplateFinder
+  alias PkgCore.TemplateFinder
 
   # import Mix.Releases.Shell, only: [debug: 1]
 
@@ -11,7 +11,7 @@ defmodule PkgDeb.Format.Generators.Upstart do
 
     upstart_script =
       ["init_scripts", "upstart.conf.eex"]
-      |> TemplateFinder.retrieve()
+      |> TemplateFinder.retrieve(:pkg_deb)
       |> EEx.eval_file(
         description: config.description,
         name: config.name,

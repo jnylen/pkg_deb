@@ -4,13 +4,12 @@ defmodule PkgDeb.Format.Control do
   custom control data such as pre/post install hooks.
   """
   alias PkgDeb.Format.Generators.Control
-  alias PkgDeb.Utils.Compression
 
   # - Add ability to create pre-inst / post-inst hooks [WIP]
   def build({release, deb_root, config}) do
     control_dir = Path.join([deb_root, "control"])
 
-    PkgDeb.Utils.Logger.debug("building debian control directory")
+    PkgCore.Logger.debug("pkg_deb", "building debian control directory")
     :ok = File.mkdir_p(control_dir)
 
     Control.build(config, control_dir)
@@ -18,13 +17,13 @@ defmodule PkgDeb.Format.Control do
     add_conffiles_file(config, control_dir)
     System.cmd("chmod", ["-R", "og-w", control_dir])
 
-    Compression.compress(
+    PkgCore.Compression.compress(
       control_dir,
       Path.join([control_dir, "..", "control.tar.gz"]),
       owner: %{user: "root", group: "root"}
     )
 
-    PkgDeb.Utils.File.remove_tmp(control_dir)
+    PkgCore.File.remove_tmp(control_dir)
 
     {release, deb_root, config}
   end

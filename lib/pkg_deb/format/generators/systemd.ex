@@ -2,14 +2,14 @@ defmodule PkgDeb.Format.Generators.Systemd do
   @moduledoc """
   This module produces a systemd unit file from the config and a template.
   """
-  alias PkgDeb.Format.Generators.TemplateFinder
+  alias PkgCore.TemplateFinder
 
   def build(data_dir, config) do
     # debug "Building Systemd Service File"
 
     systemd_script =
       ["init_scripts", "systemd.service.eex"]
-      |> TemplateFinder.retrieve()
+      |> TemplateFinder.retrieve(:pkg_deb)
       |> EEx.eval_file(
         description: config.description,
         name: config.name,
