@@ -2,14 +2,13 @@ defmodule PkgDeb.MixProject do
   use Mix.Project
 
   @name :pkg_deb
-  @version "0.3.0"
+  @version "0.3.1"
   @description """
   Elixir lib for creating Debian packages with Mix Release.
   """
   @deps [
     {:pkg_core, "~> 0.1"},
     {:vex, "~> 0.8"},
-    {:timex, "~> 3.6"},
     {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
   ]
 
