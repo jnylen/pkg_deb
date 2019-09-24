@@ -8,7 +8,7 @@ defmodule PkgDeb do
   @doc """
   Receives an Mix.Release struct and creates a .deb file.
   """
-  def create_deb(%Mix.Release{} = release, config) when is_list(config) do
+  def create(%Mix.Release{} = release, config) when is_list(config) do
     {:ok, package_config} = PkgDeb.Format.Config.build_config(release, config)
 
     PkgCore.Logger.debug("pkg_deb", "building .deb package..")
@@ -23,7 +23,9 @@ defmodule PkgDeb do
     release
   end
 
-  def create_deb(release, _), do: release
+  def create(release, _), do: release
+
+  def create_deb(release, config), do: create(release, config)
 
   defp remove_dir({_, deb_root, _}) do
     deb_root

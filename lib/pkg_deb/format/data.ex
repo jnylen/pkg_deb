@@ -9,7 +9,6 @@ defmodule PkgDeb.Format.Data do
     data_dir = make_data_dir(dir, config)
     copy_release(data_dir, config, release)
     copy_additional_files(data_dir, config.additional_files)
-    remove_targz_file(data_dir, config)
     PkgCore.File.remove_fs_metadata(data_dir)
     Upstart.build(data_dir, config)
     Systemd.build(data_dir, config)
@@ -33,14 +32,6 @@ defmodule PkgDeb.Format.Data do
     PkgCore.File.remove_tmp(data_dir)
 
     {release, dir, config}
-  end
-
-  # We don't use/need the .tar.gz file built by Distillery Packager, so
-  # remove it from the data dir to reduce filesize.
-  defp remove_targz_file(data_dir, config) do
-    [data_dir, config.base_path, config.name, "#{config.name}-#{config.version}.tar.gz"]
-    |> Path.join()
-    |> File.rm()
   end
 
   defp make_data_dir(dir, config) do
