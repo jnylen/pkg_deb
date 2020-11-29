@@ -11,7 +11,7 @@ The package can be installed by adding `pkg_deb` to your list of dependencies in
 ```elixir
 def deps do
   [
-    {:pkg_deb, "~> 0.3.0"}
+    {:pkg_deb, "~> 0.4.0"}
   ]
 end
 ```
