@@ -31,7 +31,20 @@ defmodule PkgDeb.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: @deps,
       package: @hex_package,
-      description: @description
+      description: @description,
+      docs: docs()
+    ]
+  end
+
+  defp docs do
+    [
+      source_ref: "master",
+      main: "PkgDeb",
+      canonical: "http://hexdocs.pm/pkg_deb",
+      source_url: "https://github.com/jnylen/pkg_deb",
+      extras: [
+        "README.md"
+      ]
     ]
   end
 
