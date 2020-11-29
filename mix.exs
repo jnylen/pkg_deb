@@ -18,7 +18,7 @@ defmodule PkgDeb.MixProject do
     maintainers: ["Joakim Nylen <hexpm@joakim.nylen.nu>"],
     licenses: ["MIT"],
     links: %{
-      "GitLab" => "https://gitlab.com/jnylen/pkg_deb",
+      "Github" => "https://github.com/jnylen/pkg_deb",
       "Docs" => "https://hexdocs.pm/pkg_deb/"
     }
   ]
