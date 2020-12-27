@@ -3,8 +3,7 @@ Version: <%= version %>
 Vendor: <%= vendor %>
 Architecture: <%= arch %>
 Maintainer: <%= maintainers %>
-Installed-Size: <%= installed_size %><%=
-  unless is_nil(external_dependencies) do %>
+Installed-Size: <%= installed_size %><%= unless is_nil(external_dependencies) do %>
 Depends: <%= external_dependencies %><% end %>
 Priority: optional
 Section: utils
